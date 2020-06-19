@@ -1,13 +1,13 @@
 const path = require('path');
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
+  mode: 'production',
   entry: './src/food-app/main.ts',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist/'
   },
-  devtool: 'inline-source-map',
+  devtool: 'none',
   module: {
     rules: [{
       test: /\.ts$/, // 正規表現で.tsファイルを指定
@@ -17,5 +17,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js']
-  }
+  },
+  plugins: [
+    new CleanWebpackPlugin()
+  ]
 }
