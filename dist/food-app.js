@@ -13,9 +13,19 @@ class Food {
 class Foods {
     constructor() {
         this.elements = document.querySelectorAll('.food');
+        this._activeElements = [];
         this.elements.forEach(element => {
             new Food(element);
         });
+    }
+    get activeElements() {
+        this._activeElements = [];
+        this.elements.forEach(element => {
+            if (element.classList.contains('food--active')) {
+                this._activeElements.push(element);
+            }
+        });
+        return this._activeElements;
     }
 }
 const foods = new Foods();
